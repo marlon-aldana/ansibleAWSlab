@@ -5,9 +5,8 @@
    - name: Search process for 7052
      shell: ps -fea | grep /home/reg/gd90/7052.SH | tail -n 1 | awk '{print $2}'
      register: running_processes
-
    - name: Kill process ARS in POS
      ignore_errors: yes
-     hell: "kill {{ item }}"
+     shell: kill {{ item }}
      with_items: "{{ running_processes.stdout_lines }}"
 
