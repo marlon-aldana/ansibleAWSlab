@@ -7,6 +7,6 @@
      register: running_processes
    - name: Kill process ARS in POS
      ignore_errors: yes
-     shell: kill {{ item }}
+     shell: kill -9 {{ item }}
      with_items: "{{ running_processes.stdout_lines }}"
 
