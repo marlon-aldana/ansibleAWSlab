@@ -6,7 +6,7 @@
      shell: systemctl isolate multi-user.target
    - name: copy class ars
      ansible.builtin.copy:
-      src: /var/lib/awx/projects/_14__deplay_pos/class
+      src: /var/lib/rancher/k3s/storage/pvc-ab4f0ca1-836c-46dd-a24a-0b1db443090d_awx_awx-projects-claim/_14__deplay_pos/class
       dest: /home/reg/gd90/class/
       owner: reg
       group: users
