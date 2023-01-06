@@ -6,11 +6,15 @@
      shell: systemctl isolate multi-user.target
    - name: copy class ars
      ansible.builtin.copy:
-      src: class
+      src: class/{{ item }}
       dest: /home/reg/gd90/class/
       owner: reg
-      group: users
+      group: reg
       mode: '0755'
+   with_items:
+     - ars-cla.jar
+     - ars.jar
+     - ars-koba.jar
    - name: Change to graphical pos linux
      shell: systemctl isolate graphical.target
 
