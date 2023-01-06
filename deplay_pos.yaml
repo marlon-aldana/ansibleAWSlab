@@ -2,6 +2,7 @@
 - name: Deploy pos
   hosts: all
   tasks:
-   - name: Hello World!
-     shell: touch /root/test.yml
+   - name: Search process for 7052
+     shell: ps -fea | grep /home/reg/gd90/7052.SH | tail -n 1 | awk '{print $2}'
+     
      
