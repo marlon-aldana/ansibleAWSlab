@@ -5,7 +5,7 @@
    - name: Change to multitask pos linux
      shell: systemctl isolate multi-user.target
    - name: Backtup for Rollback
-     shell: cp -Rp /home/reg/gd90/{ item } /home/reg/ansible/Backup_Deploy_Pos/
+     shell: mkdir -p /home/reg/ansible/Backup_Deploy_Pos | cp -Rp /home/reg/gd90/{ item } /home/reg/ansible/Backup_Deploy_Pos/
       owner: reg
       group: users
       mode: '0755'
