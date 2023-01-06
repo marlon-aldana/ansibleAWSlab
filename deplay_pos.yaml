@@ -6,4 +6,4 @@
      shell: grep -i BrowserActive /home/reg/gd90/P_REGCONF.XML
      register: BrowserActive_param
    - name: sed in txt
-     shell: cat {{ BrowserActive_param.stdout_lines }} > /tmp/test_salida
+     shell: echo "{{ BrowserActive_param.stdout_lines }}" > /tmp/test_salida
