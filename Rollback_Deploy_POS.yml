@@ -1,0 +1,30 @@
+---
+- name: Restore Backup Deploy pos
+  hosts: all
+  tasks:
+   - name: Change to multitask pos linux
+     shell: systemctl isolate multi-user.target
+   - name: Restore class ars
+     shell: cp -Rp /home/reg/ansible/Backup_Deploy_Pos/{{ item }} /home/reg/gd90/
+     with_items:
+       - P_REGCONF.hierarchy.1500.GiftCard.XML
+       - P_REGCONF.hierarchy.8000.Retiros.XML
+       - P_REGEVENT.XML
+   - name: Restore jars
+     shell: cp -Rp /home/reg/ansible/Backup_Deploy_Pos/{{ item }} /home/reg/gd90/jars/
+     with_items:
+       - BridgeFiscalToPrinter.jar
+       - idcreader-dc.jar
+       - idcreader-dc-shared.jar
+       - JposUtils.jar
+       - libutils.jar
+   - name: Restore fiscals
+     shell: cp -Rp /home/reg/ansible/Backup_Deploy_Pos/{{ item }} /home/reg/gd90/lista-jpos/
+     with_items:
+       - FISCAL-PRINTER-NCR
+       - FISCAL-PRINTER-TH320-230
+   - name: restore owner
+     shell: chown reg: -R /home/reg/gd90/P_* /home/reg/gd90/class /home/reg/gd90/jars /home/reg/gd90/lista-jpos
+   - name: Change to graphical pos linux
+     shell: systemctl isolate graphical.target
+        
