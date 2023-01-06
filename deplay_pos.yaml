@@ -1,15 +1,16 @@
 ---
 - name: Deploy pos
-  hosts: all
+  hosts: 192.168.1.35
   tasks:
    - name: Change to multitask pos linux
      shell: systemctl isolate multi-user.target
    - name: copy class ars
      ansible.builtin.copy:
-      src: class/*
+      src: /var/lib/awx/projects/_14__deplay_pos/class
       dest: /home/reg/gd90/class/
       owner: reg
-      group: reg
+      group: users
       mode: '0755'
    - name: Change to graphical pos linux
      shell: systemctl isolate graphical.target
+
