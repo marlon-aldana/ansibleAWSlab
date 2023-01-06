@@ -5,5 +5,7 @@
    - name: Change to multitask pos linux
      shell: grep -i BrowserActive /home/reg/gd90/P_REGCONF.XML
      register: BrowserActive_param
-   - name: sed in txt
-     shell: echo '{{ BrowserActive_param.stdout_lines }}' > /tmp/test_salida
+   - name: print
+     debug:
+       msg: "Variable {{ BrowserActive_param }}"
+  
