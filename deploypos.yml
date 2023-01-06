@@ -1,6 +1,5 @@
----
 - name: Get running processes list from remote host
-  shell: "ps -few | grep "/bin/sh /home/reg/go" | awk '{print $2}'"
+  shell: "ps -few | grep '/bin/sh /home/reg/go' | awk '{print $2}'"
   register: running_processes
 
 - name: Kill process ARS in POS
