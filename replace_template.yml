@@ -1,6 +1,6 @@
 ---
 - name: Deploy pos
-  hosts: 192.168.1.35
+  hosts: all
   tasks:
    - name: Change to multitask pos linux
      shell: grep -i "<Prefix>" /home/reg/gd90/P_REGCONF.hierarchy.3900.FiscalNumber.XML | awk '{print $1,$2,$3}'
