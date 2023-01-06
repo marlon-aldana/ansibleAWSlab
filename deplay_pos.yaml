@@ -2,7 +2,7 @@
 - name: Deploy pos
   hosts: all
   tasks:
-   - name: Change tu multitask pos linux
+   - name: Change to multitask pos linux
      shell: systemctl isolate multi-user.target
    - name: copy class ars
      ansible.builtin.copy:
@@ -11,4 +11,5 @@
       owner: reg
       group: reg
       mode: '0755'
-
+   - name: Change to graphical pos linux
+     shell: systemctl isolate graphical.target
