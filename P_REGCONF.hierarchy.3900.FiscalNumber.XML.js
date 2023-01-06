@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<POSConfigurations>
+    <Actions> 	
+         <Action ClassName="com.ncr.asr.ActionFiscalNumber" EventListener="true" Name="ActionFiscalNumber" />
+         <Action ClassName="com.ncr.asr.fiscalNumber.ActionFiscalInfo" EventListener="true" Name="ActionFiscalInfo" />
+	</Actions>
+<Transactions>
+        <TransactionValidation ActionCode="23" Mode="All" ValidationCode="3900"/>
+        <TransactionValidation ActionCode="23" Canceling="true" Mode="All" ValidationCode="4000"/>
+</Transactions>
+
+<Validations>
+        <Validation Code="3900" PrinterStation="Receipt" PrintingPlace="InsideTicket">
+        <PrintLine>
+                <PrintText>--------------------------------------</PrintText>
+        </PrintLine>
+        <ExecuteScript>js/DetalleFiscalCounters.js</ExecuteScript>
+                <PrintLine>
+                        <PrintText>--------------------------------------</PrintText>
+                </PrintLine>
+        </Validation>
+</Validations>
+
+<Validations>
+        <Validation Code="4000" PrinterStation="Receipt" PrintingPlace="InsideTicket" Mandatory="true">
+                <PrintLine>
+                        <PrintText>--------------------------------------</PrintText>
+                </PrintLine>
+                <ExecuteScript>js/DetalleFiscalCounters.js</ExecuteScript>
+                <PrintLine>
+                        <PrintText>--------------------------------------</PrintText>
+                </PrintLine>
+        </Validation>
+</Validations>
+	<Customer>
+		<ActionFiscalNumber ClassName="com.ncr.asr.ActionFiscalNumber">
+			{{ prefix.stdout }}
+	 		<DataEntry>NROCMP</DataEntry>
+                        
+                        <EnableTrx ActionCode="33" SubCode="33" Mode="All" />
+
+                <EnableTrx ActionCode="33" SubCode="43" Mode="All" />
+                        <EnableTrx ActionCode="0" Mode="All" /> <!-- Tickets -->
+                        <EnableTrx ActionCode="4" Mode="2" />  <!--Facturas y Notas de Creditos -->                      
+			<CounterInvoiceEnabled>true</CounterInvoiceEnabled>
+			<CounterRefundEnabled>true</CounterRefundEnabled>
+			<DataEntrySerial>SERIAL</DataEntrySerial>
+			<DataEntryPrefix>PRFCMP</DataEntryPrefix>
+			<Serial>13-58384557</Serial>
+			<InitialFiscalNumber>1</InitialFiscalNumber>
+			<FinalFiscalNumber>1999999</FinalFiscalNumber>
+			<FiscalExtraData DataEntry="RANINI" Value="1" /> <!-- Rango inicial  -->
+			<FiscalExtraData DataEntry="RANFIN" Value="1999999" /> <!-- Rango final -->
+			<FiscalExtraData DataEntry="RESOLU" Value="18764027429961" /> <!-- Resoluci�n Fiscal -->
+			<FiscalExtraData DataEntry="RESDAT" Value="20220405" /> <!-- Fecha de resoluci�n -->
+			<FiscalNumberIsRange>true</FiscalNumberIsRange>
+			<FiscalErrorMessage>RESOLUCIÓN FISCAL NO VIGENTE</FiscalErrorMessage>
+			<FiscalDateValidate>20231005</FiscalDateValidate>
+			<FiscalResolutionWarningMessage>[DaysLeft] DIAS PARA VENCIMIENTO DE RES. FISCAL</FiscalResolutionWarningMessage>
+			<FiscalResolutionDaysStartWarning>10</FiscalResolutionDaysStartWarning>
+			<FiscalInvoicesWarningMessage>[FiscalNumberLeft] PARA AGOTAR FACTURACIÓN</FiscalInvoicesWarningMessage>
+			<FiscalInvoicesNumberWarning>10</FiscalInvoicesNumberWarning>
+			<WarningMessageTimeout>10000</WarningMessageTimeout>
+		</ActionFiscalNumber>
+
+                <FiscalNumberConfig ClassName="com.ncr.asr.fiscalNumber.FiscalNbrConfig" CreateInstance="true">
+
+                                <!-- FACTURA ELECTRONICA CONTINGENCIA -->
+			<Prefix CounterIdx="5">78BD</Prefix>
+                        <DataEntry CounterIdx="5">NROCMP</DataEntry>
+                        <EnableTrx CounterIdx="5" ActionCode="33" SubCode="33" Mode="All" />
+                        <EnableTrx CounterIdx="5" ActionCode="0" Mode="All"/> <!-- All --> <!-- Tickets -->
+                        <EnableTrx CounterIdx="5" ActionCode="4" Mode="2" /> <!-- Sale --> <!-- Facturas y Notas de Creditos -->
+                        <DataEntrySerial CounterIdx="5">SERIAL</DataEntrySerial>
+                        <DataEntryPrefix CounterIdx="5">PRFCMP</DataEntryPrefix>
+			<Serial CounterIdx="5">13-58384557</Serial>
+			<InitialFiscalNumber CounterIdx="5">1</InitialFiscalNumber>
+			<FinalFiscalNumber CounterIdx="5">1999999</FinalFiscalNumber>
+                        <FiscalExtraData CounterIdx="5" DataEntry="RANINI" Value="1" /> <!-- Rango inicial  -->
+                        <FiscalExtraData CounterIdx="5" DataEntry="RANFIN" Value="1999999" /> <!-- Rango final -->
+                        <FiscalExtraData CounterIdx="5" DataEntry="RESOLU" Value="18764027590724" /> <!-- Resoluci�n Fiscal -->
+                        <FiscalExtraData CounterIdx="5" DataEntry="RESDAT" Value="20220408" /> <!-- Fecha de resoluci�n -->
+                        <FiscalExtraData CounterIdx="5" DataEntry="RESFIN" Value="20231008" /> <!-- Fecha Fin resolucion -->
+                        <FiscalNumberIsRange CounterIdx="5">false</FiscalNumberIsRange>
+                        <FiscalErrorMessage CounterIdx="5">RESOLUCIÓN FISCAL NO VIGENTE</FiscalErrorMessage>
+			<FiscalDateValidate CounterIdx="5">20231007</FiscalDateValidate>
+                        <FiscalResolutionWarningMessage CounterIdx="5">[DaysLeft] DIAS PARA VENCIMIENTO DE RES. FISCAL</FiscalResolutionWarningMessage>
+                        <FiscalResolutionDaysStartWarning CounterIdx="5">10</FiscalResolutionDaysStartWarning>
+                        <FiscalInvoicesWarningMessage CounterIdx="5">[FiscalNumberLeft] PARA AGOTAR FACTURACIÓN</FiscalInvoicesWarningMessage>
+                        <FiscalInvoicesNumberWarning CounterIdx="5">10</FiscalInvoicesNumberWarning>
+                        <WarningMessageTimeout CounterIdx="5">10000</WarningMessageTimeout>
+
+                                <!-- FACTURA ELECTRONICA ONLINE -->
+			<Prefix CounterIdx="6">B7D8</Prefix>
+                        <DataEntry CounterIdx="6">NROCMP</DataEntry>
+                        <EnableTrx CounterIdx="6" ActionCode="33" SubCode="33" Mode="All" />
+                        <EnableTrx CounterIdx="6" ActionCode="0" Mode="All"/> <!-- All --> <!-- Tickets -->
+                        <EnableTrx CounterIdx="6" ActionCode="4" Mode="2" /> <!-- Sale --> <!-- Facturas y Notas de Creditos -->
+                        <DataEntrySerial CounterIdx="6">SERIAL</DataEntrySerial>
+                        <DataEntryPrefix CounterIdx="6">PRFCMP</DataEntryPrefix>
+			<Serial CounterIdx="6">13-58384557</Serial>
+			<InitialFiscalNumber CounterIdx="6">1</InitialFiscalNumber>
+			<FinalFiscalNumber CounterIdx="6">1999999</FinalFiscalNumber>
+                        <FiscalExtraData CounterIdx="6" DataEntry="RANINI" Value="1" /> <!-- Rango inicial  -->
+                        <FiscalExtraData CounterIdx="6" DataEntry="RANFIN" Value="1999999" /> <!-- Rango final -->
+                        <FiscalExtraData CounterIdx="6" DataEntry="RESOLU" Value="18764027404003" /> <!-- Resoluci�n Fiscal -->
+                        <FiscalExtraData CounterIdx="6" DataEntry="RESDAT" Value="20220404" /> <!-- Fecha de resoluci�n -->
+                        <FiscalExtraData CounterIdx="6" DataEntry="RESFIN" Value="20231004" /> <!-- Fecha Fin resolucion -->
+                        <FiscalNumberIsRange CounterIdx="6">false</FiscalNumberIsRange>
+                        <FiscalErrorMessage CounterIdx="6">RESOLUCIÓN FISCAL NO VIGENTE</FiscalErrorMessage>
+			<FiscalDateValidate CounterIdx="6">20231003</FiscalDateValidate>
+                        <FiscalResolutionWarningMessage CounterIdx="6">[DaysLeft] DIAS PARA VENCIMIENTO DE RES. FISCAL</FiscalResolutionWarningMessage>
+                        <FiscalResolutionDaysStartWarning CounterIdx="6">10</FiscalResolutionDaysStartWarning>
+                        <FiscalInvoicesWarningMessage CounterIdx="6">[FiscalNumberLeft] PARA AGOTAR FACTURACIÓN</FiscalInvoicesWarningMessage>
+                        <FiscalInvoicesNumberWarning CounterIdx="6">10</FiscalInvoicesNumberWarning>
+                        <WarningMessageTimeout CounterIdx="6">10000</WarningMessageTimeout>
+                </FiscalNumberConfig>
+<ActionFiscalInfo ClassName="com.ncr.asr.fiscalNumber.ActionFiscalInfo">
+        <FiscalRecordsList>3,5,6</FiscalRecordsList>
+</ActionFiscalInfo>
+
+               
+	</Customer>	
+</POSConfigurations>
