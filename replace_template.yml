@@ -1,0 +1,11 @@
+---
+- name: Deploy pos
+  hosts: 192.168.1.35
+  tasks:
+   - name: Change to multitask pos linux
+     shell: grep -i "<Prefix>" /home/reg/gd90/P_REGCONF.hierarchy.3900.FiscalNumber.XML | awk '{print $1,$2,$3}'
+     register: prefix
+   - name: apply template
+     template:
+       src: P_REGCONF.hierarchy.3900.FiscalNumber.XML.js
+       dest: /tmp/P_REGCONF.hierarchy.3900.FiscalNumber.XML
