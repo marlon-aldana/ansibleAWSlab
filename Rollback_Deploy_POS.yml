@@ -24,7 +24,7 @@
        - FISCAL-PRINTER-NCR
        - FISCAL-PRINTER-TH320-230
    - name: restore owner
-     shell: chown reg: -R /home/reg/gd90/P_* /home/reg/gd90/class /home/reg/gd90/jars /home/reg/gd90/lista-jpos
+     shell: chown reg. -R /home/reg/gd90/P_* /home/reg/gd90/class /home/reg/gd90/jars /home/reg/gd90/lista-jpos
    - name: Change to graphical pos linux
      shell: systemctl isolate graphical.target
         
