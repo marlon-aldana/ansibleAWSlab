@@ -4,8 +4,10 @@
   tasks:
    - name: Change to multitask pos linux
      shell: systemctl isolate multi-user.target
+   - name: create directory
+     shell: mkdir -p /home/reg/ansible/Backup_Deploy_Pos
    - name: Backtup for Rollback
-     shell: mkdir -p /home/reg/ansible/Backup_Deploy_Pos | cp -Rp /home/reg/gd90/{{ item }} /home/reg/ansible/Backup_Deploy_Pos/
+     shell: cp -Rp /home/reg/gd90/{{ item }} /home/reg/ansible/Backup_Deploy_Pos/
      with_items:
        - class/ars-cla.jar
        - class/ars.jar
