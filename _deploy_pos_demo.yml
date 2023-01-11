@@ -89,6 +89,14 @@
      with_items:
        - FISCAL-PRINTER-NCR
        - FISCAL-PRINTER-TH320-230
+   - name: number of pos
+     shell: hostname | sed "s/REG//g"
+     register: numberpos
+   - name: get version ARS
+     shell:  grep -i "GdPos ARS v" /home/reg/gd90/L_JVM{{ numberpos.stdout  }}.LOG | tail -n 1
+     register: arsversion
+   - name: print version ARS Final
+     debug: msg={{ arsversion.stdout }}
    - name: Change to graphical pos linux
      shell: systemctl isolate graphical.target
 
