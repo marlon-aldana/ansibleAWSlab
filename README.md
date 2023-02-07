@@ -1,2 +1,2 @@
-# ansibleAWSlab
+# ansibleAWXlab
 Playbooks para ansible AWS
