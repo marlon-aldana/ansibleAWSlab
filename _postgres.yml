@@ -1,11 +1,21 @@
 ---
 - name: Deploy pos
   hosts: all
+  become: true
   tasks:
-   - name: Simple select query to acme db
-     postgresql_query:
-       db: postgres
-       login_host: 192.168.1.17
-       login_user: postgres
-       login_password: ARS4ever
-       query: select * from awxfiscal;
+    - name: Simple select query to acme db
+      ansible.builtin.package:
+        name: python3-psycopg2
+        state: present
+    - name: run sql
+      community.postgresql.postgresql_query:
+        db: postgres
+        query: select * from awxfiscal;
+      become: true
+      login_user: postgres
+      login_password: ARS4ever
+      register: sql_Data
+    - name: print
+      ansible.builtin.debug:
+        var: sql_data
+
