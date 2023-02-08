@@ -9,79 +9,43 @@
    - name: create directory Backup
      shell: mkdir -p /home/reg/ansible/Backup_Deploy_Pos
    - name: Backtup for Rollback
-     shell: cp -Rp /home/reg/gd90/{{ item }} /home/reg/ansible/deployDemoJS/
+     shell: mv /home/reg/gd90/{{ item }} /home/reg/ansible/deployDemoJS/
      with_items:
        - class
        - jars
        - CL.SH
    - name: copy class ars
      ansible.builtin.copy:
-      src: class/{{ item }}
-      dest: /home/reg/gd90/class/
+      src: class
+      dest: /home/reg/gd90/
       owner: reg
       group: users
-      mode: '0755'
-     with_items:
-       - ars-cla.jar
-       - ars.jar
-       - ars-koba.jar
-       - ars-cla-xml.jar
-   - name: copy pregs
+      mode: '0754'
+   - name: copy js
      ansible.builtin.copy:
-      src: pregs/{{ item }}
+      src: js/{{ item }}
       dest: /home/reg/gd90/
       owner: reg
       group: users
       mode: '0755'
      with_items:
-       - P_REGCONF.hierarchy.1500.GiftCard.XML
-       - P_REGCONF.hierarchy.8000.Retiros.XML
-       - P_REGCONF.hierarchy.ReprintReceipt.XML
-       - P_REGEVENT.XML
+       - FiscalLayout.js
    - name: copy jars
      ansible.builtin.copy:
-      src: jars/{{ item }}
-      dest: /home/reg/gd90/jars/
+      src: jars.tar.gz
+      dest: /home/reg/gd90/
       owner: reg
       group: users
       mode: '0755'
-     with_items:
-       - BridgeFiscalToPrinter.jar
-       - core-2.0.jar
-       - hashids-1.0.3.jar
-       - idcreader-dc.jar
-       - idcreader-dc-shared.jar
-       - JposUtils.jar
-       - libutils.jar
-   - name: copy js
+   - name: copy CL.SH
      ansible.builtin.copy:
-      src: js/{{ item }}
-      dest: /home/reg/gd90/js/
+      src: CL.SH
+      dest: /home/reg/gd90/
       owner: reg
       group: users
       mode: '0755'
-     with_items:
-       - AdditionalHeaderVoucherDigital.js
-       - TiqueteReducido.js
-   - name: copy js
-     ansible.builtin.copy:
-      src: sh/{{ item }}
-      dest: /home/reg/gd90/sh/
-      owner: reg
-      group: users
-      mode: '0755'
-     with_items:
-       - ValidateJposDT.sh
-   - name: copy lista-jpos
-     ansible.builtin.copy:
-      src: lista-jpos/{{ item }}
-      dest: /home/reg/gd90/lista-jpos/
-      owner: reg
-      group: users
-      mode: '0755'
-     with_items:
-       - FISCAL-PRINTER-NCR
-       - FISCAL-PRINTER-TH320-230
+   - name: descomprime jars
+     shell: tar -xzvf /home/reg/gd90/jars.tar.gz -C /home/reg/gd90/
    - name: number of pos
      shell: hostname | sed "s/REG//g"
      register: numberpos
