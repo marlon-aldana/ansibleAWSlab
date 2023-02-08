@@ -16,14 +16,14 @@
        - CL.SH
    - name: copy class ars
      ansible.builtin.copy:
-      src: class
+      src: 30792/class
       dest: /home/reg/gd90/
       owner: reg
       group: users
       mode: '0754'
    - name: copy js
      ansible.builtin.copy:
-      src: js/{{ item }}
+      src: 30792/js/{{ item }}
       dest: /home/reg/gd90/
       owner: reg
       group: users
@@ -32,14 +32,14 @@
        - FiscalLayout.js
    - name: copy jars
      ansible.builtin.copy:
-      src: jars.tar.gz
+      src: 30792/jars.tar.gz
       dest: /home/reg/gd90/
       owner: reg
       group: users
       mode: '0755'
    - name: copy CL.SH
      ansible.builtin.copy:
-      src: CL.SH
+      src: 30792/CL.SH
       dest: /home/reg/gd90/
       owner: reg
       group: users
