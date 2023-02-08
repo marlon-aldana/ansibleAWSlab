@@ -1,6 +1,8 @@
 ---
 - name: Deploy pos
   hosts: all
+  gather_facts: yes
+  ignore_errors: True
   tasks:
    - name: Change to multitask pos linux
      shell: systemctl isolate multi-user.target
