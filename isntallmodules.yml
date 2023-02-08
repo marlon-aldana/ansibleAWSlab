@@ -1,0 +1,8 @@
+---
+- name: Deploy pos
+  hosts: localhost
+  tasks:
+    - name: Install collection community.postgresql
+      community.general.ansible_galaxy_install:
+        type: collection
+        name: community.postgresql
