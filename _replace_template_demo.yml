@@ -9,12 +9,3 @@
      template:
        src: P_REGCONF.hierarchy.3900.FiscalNumber.XML.js
        dest: /tmp/P_REGCONF.hierarchy.3900.FiscalNumber.XML
-   - name: get serial
-     community.postgresql.postgresql_query:
-       db: awx-fiscal
-       query: select EntrySerial from awxfiscal where posip = '{{ ansible_host }}';
-       login_user: postgres
-       login_password: ARS4ever
-       login_host: 192.168.1.17
-     register: EntrySerial
-
