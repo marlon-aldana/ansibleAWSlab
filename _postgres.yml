@@ -1,21 +1,87 @@
 ---
 - name: Deploy pos
   hosts: all
-  become: true
   tasks:
-    - name: Simple select query to acme db
-      ansible.builtin.package:
-        name: python3-psycopg2
-        state: present
-    - name: run sql
-      community.postgresql.postgresql_query:
-        db: postgres
-        query: select * from awxfiscal;
-      become: true
-      login_user: postgres
-      login_password: ARS4ever
-      register: sql_Data
-    - name: print
-      ansible.builtin.debug:
-        var: sql_data
+   - name: Simple select query to acme db
+     ansible.builtin.package:
+       name: python3-psycopg2
+       state: present
+   - name: get serial
+     community.postgresql.postgresql_query:
+       db: awx-fiscal
+       query: select EntrySerial from awxfiscal where posip = '{{ ansible_host }}';
+       login_user: postgres
+       login_password: ARS4ever
+       login_host: 192.168.1.17
+     register: EntrySerial
+   - name: print
+     ansible.builtin.debug:
+       var: EntrySerial
+   - name: get prefix
+     community.postgresql.postgresql_query:
+       db: awx-fiscal
+       query: select DataEntryPrefix from awxfiscal where posip = '{{ ansible_host }}';
+       login_user: postgres
+       login_password: ARS4ever
+       login_host: 192.168.1.17
+     register: DataEntryPrefix
+   - name: print
+     ansible.builtin.debug:
+       var: DataEntryPrefix
+   - name: get InitialFiscalNumber
+     community.postgresql.postgresql_query:
+       db: awx-fiscal
+       query: select InitialFiscalNumber from awxfiscal where posip = '{{ ansible_host }}';
+       login_user: postgres
+       login_password: ARS4ever
+       login_host: 192.168.1.17
+     register: InitialFiscalNumber
+   - name: print
+     ansible.builtin.debug:
+       var: InitialFiscalNumber
+   - name: get FinalFiscalNumber
+     community.postgresql.postgresql_query:
+       db: awx-fiscal
+       query: select FinalFiscalNumber from awxfiscal where posip = '{{ ansible_host }}';
+       login_user: postgres
+       login_password: ARS4ever
+       login_host: 192.168.1.17
+     register: FinalFiscalNumber
+   - name: print
+     ansible.builtin.debug:
+       var: FinalFiscalNumber
+   - name: get FiscalDateValidate
+     community.postgresql.postgresql_query:
+       db: awx-fiscal
+       query: select FiscalDateValidate from awxfiscal where posip = '{{ ansible_host }}';
+       login_user: postgres
+       login_password: ARS4ever
+       login_host: 192.168.1.17
+     register: FiscalDateValidate
+   - name: print
+     ansible.builtin.debug:
+       var: FiscalDateValidate
+   - name: get resolucionpos
+     community.postgresql.postgresql_query:
+       db: awx-fiscal
+       query: select resolucionpos from awxfiscal where posip = '{{ ansible_host }}';
+       login_user: postgres
+       login_password: ARS4ever
+       login_host: 192.168.1.17
+     register: resolucionpos
+   - name: print
+     ansible.builtin.debug:
+       var: resolucionpos
+   - name: get resolucionfe
+     community.postgresql.postgresql_query:
+       db: awx-fiscal
+       query: select resolucionfe from awxfiscal where posip = '{{ ansible_host }}';
+       login_user: postgres
+       login_password: ARS4ever
+       login_host: 192.168.1.17
+     register: resolucionfe
+   - name: print
+     ansible.builtin.debug:
+       var: resolucionfe
+
 
