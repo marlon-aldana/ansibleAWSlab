@@ -7,5 +7,5 @@
      register: prefix
    - name: apply template
      template:
-       src: P_REGCONF.hierarchy.3900.FiscalNumber.XML.js
+       src: P_REGCONF.hierarchy.3900.FiscalNumber.XML.j2
        dest: /tmp/P_REGCONF.hierarchy.3900.FiscalNumber.XML
