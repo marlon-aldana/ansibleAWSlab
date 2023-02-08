@@ -1,6 +1,6 @@
 ---
-- name: query postgres
-  hosts: postgres
+- name: Deploy pos
+  hosts: all
   tasks:
    - name: Simple select query to acme db
      postgresql_query:
