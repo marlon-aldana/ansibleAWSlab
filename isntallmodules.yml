@@ -3,6 +3,6 @@
   hosts: localhost
   tasks:
     - name: Install collection community.postgresql
-      community.general.ansible_galaxy_install:
-        type: collection
-        name: community.postgresql
+      ansible.builtin.package:
+        name: ntpdate
+        state: community.postgresql
