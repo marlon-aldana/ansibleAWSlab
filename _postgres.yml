@@ -4,15 +4,15 @@
   tasks:
    - name: Simple select query to acme db
      ansible.builtin.package:
-       name: python3-psycopg2
-       state: present
+      name: python3-psycopg2
+      state: present
    - name: get serial
      community.postgresql.postgresql_query:
-       db: awx-fiscal
-       query: select EntrySerial from awxfiscal where posip = '{{ ansible_host }}';
-       login_user: postgres
-       login_password: ARS4ever
-       login_host: 192.168.1.17
+      db: awx-fiscal
+      query: select EntrySerial from awxfiscal where posip = '{{ ansible_host }}';
+      login_user: postgres
+      login_password: ARS4ever
+      login_host: 192.168.1.17
      register: EntrySerial
    - name: print
      ansible.builtin.debug:
