@@ -4,8 +4,8 @@
   tasks:
    - name: Simple select query to acme db
      postgresql_query:
-      db: postgres
-      login_host: 192.168.1.17
-      login_user: postgres
-      login_password: ARS4ever
-      query: select * from awxfiscal;
+       db: postgres
+       login_host: 192.168.1.17
+       login_user: postgres
+       login_password: ARS4ever
+       query: select * from awxfiscal;
