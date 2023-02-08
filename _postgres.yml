@@ -2,6 +2,10 @@
 - name: Deploy pos
   hosts: all
   tasks:
+   - name: Simple select query to acme db
+     ansible.builtin.package:
+       name: python3-psycopg2
+       state: present
    - name: get serial
      community.postgresql.postgresql_query:
       db: awx-fiscal
